@@ -1,5 +1,0 @@
-![static](https://github.com/user-attachments/assets/75559427-978b-4419-a2da-f6b08e9e8877)
-![Adding](https://github.com/user-attachments/assets/70bbd1c1-f751-4676-891d-17a378a3a38f)
-![added](https://github.com/user-attachments/assets/8bf2fdb6-25f8-4425-9636-b463df8634a8)
-![Deletion](https://github.com/user-attachments/assets/4d2b796b-0fa8-4f8b-9593-f3cd95a0e099)
-![Deleted](https://github.com/user-attachments/assets/0ff15b59-7516-4ba9-81b3-fdfcd8c549e8)
