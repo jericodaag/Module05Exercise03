@@ -11,8 +11,9 @@ namespace Module07DataAccess.Services
         private readonly string _connectionString;
         public DatabaseConnectionService()
         {
-            _connectionString = "Server=localhost;Database=companydb;User ID=testuser;Password=testuser";
+            _connectionString = "Server=localhost;Database=companydb;User ID=root;Password=;Port=3306;";
         }
+
         public string GetConnectionString()
         {
             return _connectionString;

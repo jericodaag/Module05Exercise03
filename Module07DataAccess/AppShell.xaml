@@ -9,13 +9,13 @@
     Title="Module07DataAccess">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
-    
+    Title="Home"
+    ContentTemplate="{DataTemplate local:MainPage}"
+    Route="MainPage" />
+
     <ShellContent
-        Title="ViewPersonal"
-        ContentTemplate="{DataTemplate views:ViewPersonal}"
-        Route="ViewPersonal" />
+    Title="Employees"
+    ContentTemplate="{DataTemplate views:ViewEmployee}"
+    Route="ViewEmployee" />
 
 </Shell>

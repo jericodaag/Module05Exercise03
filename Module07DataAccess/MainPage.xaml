@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Module07DataAccess.MainPage"
+             Title="Home"
              BackgroundColor="#0D1117">
 
     <ScrollView>
@@ -46,7 +47,7 @@
                        HorizontalOptions="Center"/>
             </VerticalStackLayout>
 
-            <!-- Quick Stats Section -->
+            <!-- Stats Section -->
             <Frame Grid.Row="1" 
                    BackgroundColor="#161B22"
                    BorderColor="#30363D"
@@ -92,7 +93,7 @@
                 </Grid>
             </Frame>
 
-            <!-- Connection Status Section -->
+            <!-- Connection Status -->
             <Frame Grid.Row="2"
                    BackgroundColor="#161B22"
                    BorderColor="#30363D"
@@ -104,16 +105,10 @@
                            FontSize="16"
                            FontAttributes="Bold"/>
 
-                    <Label x:Name="ConnectionStatusLabel"
-                           Text="Not Connected"
+                    <Label Text="{Binding ConnectionStatus}"
                            TextColor="#8B949E"
                            FontSize="14"
                            HorizontalOptions="Start"/>
-
-                    <ProgressBar x:Name="ConnectionProgress"
-                               Progress="0"
-                               ProgressColor="#238636"
-                               HeightRequest="6"/>
                 </VerticalStackLayout>
             </Frame>
 

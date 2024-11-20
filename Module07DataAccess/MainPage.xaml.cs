@@ -1,17 +1,27 @@
 ﻿using Module07DataAccess.Services;
-using MySql.Data.MySqlClient;
 using Module07DataAccess.View;
+using Module07DataAccess.ViewModel;
+using MySql.Data.MySqlClient;
 
 namespace Module07DataAccess
 {
     public partial class MainPage : ContentPage
     {
         private readonly DatabaseConnectionService _dbConnectionService;
+        private readonly MainPageViewModel _viewModel;
 
         public MainPage()
         {
             InitializeComponent();
             _dbConnectionService = new DatabaseConnectionService();
+            _viewModel = new MainPageViewModel();
+            BindingContext = _viewModel;
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await _viewModel.LoadCounts();
         }
 
         private async void OnTestConnectionClicked(object sender, EventArgs e)
@@ -22,27 +32,20 @@ namespace Module07DataAccess
                 using (var connection = new MySqlConnection(connectionString))
                 {
                     await connection.OpenAsync();
-                    ConnectionStatusLabel.Text = "Connection Successful";
-                    ConnectionStatusLabel.TextColor = Colors.Green;
+                    _viewModel.ConnectionStatus = "Connection Successful";
+                    await DisplayAlert("Success", "Database connection successful!", "OK");
                 }
             }
             catch (Exception ex)
             {
-                ConnectionStatusLabel.Text = $"Connection Failed: {ex.Message}";
-                ConnectionStatusLabel.TextColor = Colors.Red;
+                _viewModel.ConnectionStatus = $"Connection Failed: {ex.Message}";
+                await DisplayAlert("Error", $"Connection failed: {ex.Message}", "OK");
             }
         }
 
         private async void OpenEmployeeManagement(object sender, EventArgs e)
         {
-            try
-            {
-                await Navigation.PushAsync(new ViewEmployee());
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error", ex.Message, "OK");
-            }
+            await Shell.Current.GoToAsync("//ViewEmployee");
         }
     }
 }

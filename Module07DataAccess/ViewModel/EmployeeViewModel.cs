@@ -12,6 +12,28 @@ namespace Module07DataAccess.ViewModel
         private readonly EmployeeService _employeeService;
         public ObservableCollection<Employee> EmployeeList { get; set; }
 
+        private int _totalEmployees;
+        public int TotalEmployees
+        {
+            get => _totalEmployees;
+            set
+            {
+                _totalEmployees = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int _totalDepartments;
+        public int TotalDepartments
+        {
+            get => _totalDepartments;
+            set
+            {
+                _totalDepartments = value;
+                OnPropertyChanged();
+            }
+        }
+
         private bool _isBusy;
         public bool IsBusy
         {
@@ -184,6 +206,11 @@ namespace Module07DataAccess.ViewModel
                 {
                     EmployeeList.Add(employee);
                 }
+
+                // Update totals
+                TotalEmployees = employees.Count;
+                TotalDepartments = employees.Select(e => e.Department).Distinct().Count();
+
                 StatusMessage = "Data loaded successfully";
             }
             catch (Exception ex)
@@ -239,7 +266,7 @@ namespace Module07DataAccess.ViewModel
                     await Application.Current.MainPage.DisplayAlert("Success",
                         "Employee added successfully!", "OK");
                     ClearFields();
-                    await LoadData();
+                    await LoadData(); // This will update the counts
                 }
                 else
                 {
@@ -299,7 +326,7 @@ namespace Module07DataAccess.ViewModel
                 {
                     await Application.Current.MainPage.DisplayAlert("Success",
                         "Employee updated successfully!", "OK");
-                    await LoadData();
+                    await LoadData(); // This will update the counts
                 }
                 else
                 {
@@ -339,7 +366,7 @@ namespace Module07DataAccess.ViewModel
                     await Application.Current.MainPage.DisplayAlert("Success",
                         $"{SelectedEmployee.Name} has been deleted successfully!", "OK");
                     ClearFields();
-                    await LoadData();
+                    await LoadData(); // This will update the counts
                 }
                 else
                 {
@@ -378,6 +405,11 @@ namespace Module07DataAccess.ViewModel
                 {
                     EmployeeList.Add(employee);
                 }
+
+                // Update totals for search results
+                TotalEmployees = results.Count;
+                TotalDepartments = results.Select(e => e.Department).Distinct().Count();
+
                 StatusMessage = $"Found {results.Count} results";
             }
             catch (Exception ex)
